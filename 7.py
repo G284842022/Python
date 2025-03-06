@@ -9,3 +9,5 @@ func()
 func()
 func()
 func()
+
+# ここまで
