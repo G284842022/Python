@@ -10,4 +10,6 @@ func()
 func()
 func()
 
+print("abc" in "abc")
+
 # ここまで

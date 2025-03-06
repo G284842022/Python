@@ -7,4 +7,4 @@ def stars(n):
                 print("☆", end=" ")
         print()
         
-stars(5)
+stars(8)
