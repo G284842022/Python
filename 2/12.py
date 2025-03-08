@@ -1,10 +1,12 @@
 def sieve_of_eratosthenes(n):
-    sieve = [True for _ in range(n + 1)]
+    l = [True for _ in range(n + 1)]
 
-    for i in range(2, int(n ** 0.5)+1):
-        if sieve[i]:
+    for i in range(2, int(n ** 0.5) + 1):
+        if l[i]:
             for j in range(i * i, n + 1, i):
-                sieve[j] = False
-    return [i for i in range(2, n + 1) if sieve[i]]
+                l[j] = False
 
-print(sieve_of_eratosthenes(120))
+    return [i for i in range(2, n + 1) if l[i]]
+
+
+print(sieve_of_eratosthenes(200))
