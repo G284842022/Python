@@ -1,6 +1,7 @@
 def mult_mat(A, B):
     rows_A, cols_A, rows_B, cols_B = len( A ), len( A[0] ), len( B ), len( B[0] )
-    if  cols_A != rows_B:
+    
+    if cols_A != rows_B:
         return "積が計算できません."
 
     mult_m = [[0 for _ in range( cols_B )] for _ in range( rows_A )]

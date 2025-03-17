@@ -1,5 +1,6 @@
 def multmult(m, l):
-    return [[i*m[j] for i in l[j]] for j in range(len(m))]
+    return [[mult * e for e in innerlist] for mult, innerlist in zip(m, l)]
+    # return [[j * m[i] for j in l[i]] for i in range( len(m) )]
 
 
 m = [3, 1, 5]
