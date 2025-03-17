@@ -22,15 +22,14 @@ def get_most_frequent_char(content):
 
 
 def decrypt(content, char):
-    simbols = {" ": " ", ".": ".", ",": ",", "?": "?", '“': '"', "—": "-", ";": ";", "é": "e"}
-    key = 20
+    simbols = {" ": " ", ".": ".", ",": ",", "?": "?", '“': '"', "”": '"', "—": "-", ";": ";", "é": "e"}
+    key = 26 - (ord(char) - ord("e"))%26
     result = []
     for i in content:
         line = []
         for j in i:
             if 'a' <= j <= 'z':
-                print(j, end="")
-                line.append(chr( (ord(j) + 20)%26 + 97 )) # chr(( ord(j)) % 26 + ord('a'))
+                line.append(chr( 97 + (ord(j) - ord("a") + key)%26 )) # chr(( ord(j)) % 26 + ord('a'))
             elif j.isdecimal():
                 line.append(j)
             elif j in simbols:
