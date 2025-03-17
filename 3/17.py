@@ -7,22 +7,23 @@ def get_content(src):
     fsrc.close()
     return content
 
-content = get_content('angoubun_shift.txt')
+content = get_content('angoubun_shuffle.txt')
 
 
-def get_most_frequent_char(content):
+def analyze_chars_frequency(content):
     frequency = dict.fromkeys((chr(i) for i in range(ord('a'), ord('z')+1)), 0)
     for i in content:
         for j in i:
             if j in frequency:
                 frequency[j] += 1
     print(frequency)
-    return max((v, k) for k, v in frequency.items())[1]
+    frequency
 
 
-def decrypt(content, char):
+def decrypt(content, freqency):
+    freq_index = ["e","t","a","o","i","h","n","s","r","d","l","u","m","w","c","y","f","g","p","b","v","k","x","j","q","z"] 
     simbols = {" ": " ", ".": ".", ",": ",", "?": "?", '“': '"', "”": '"', "—": "-", ";": ";", "é": "e"}
-    key = 26 - (ord(char) - ord("e"))%26
+    
     result = []
     for i in content:
         line = []
@@ -38,6 +39,6 @@ def decrypt(content, char):
         
 
 f = open('decrypt.txt', 'w')
-for i in decrypt(content, get_most_frequent_char(content)):
-    f.write(''.join(i))
-    f.write( '\n')
+# for i in decrypt(content, get_most_frequent_char(content)):
+#     f.write(''.join(i))
+#     f.write( '\n')
