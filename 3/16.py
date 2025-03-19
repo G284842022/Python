@@ -16,19 +16,18 @@ def get_most_frequent_char(content):
         for j in i:
             if j in frequency:
                 frequency[j] += 1
-    print(frequency)
     return max((v, k) for k, v in frequency.items())[1]
 
 
 def decrypt(content, char):
     simbols = {" ": " ", ".": ".", ",": ",", "?": "?", '“': '"', "”": '"', "—": "-", ";": ";", "é": "e"}
-    key = 26 - (ord(char) - ord("e"))%26
+    key = 26- (ord(char) - ord("e"))%26
     result = []
     for i in content:
         line = []
         for j in i:
             if 'a' <= j <= 'z':
-                line.append(chr( ord("a") + (ord(j) - ord("a") + key)%26 ))
+                line.append(chr( ord("a") + (ord(j)-ord("a") + key)%26 ))
             elif j.isdecimal():
                 line.append(j)
             elif j in simbols:

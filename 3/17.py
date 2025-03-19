@@ -11,25 +11,25 @@ content = get_content('angoubun_shuffle.txt')
 
 
 def analyze_chars_frequency(content):
-    frequency = dict.fromkeys((chr(i) for i in range(ord('a'), ord('z')+1)), 0)
+    frequency = {chr(i): 0 for i in range(ord('a'), ord('z')+1)}
     for i in content:
         for j in i:
             if j in frequency:
                 frequency[j] += 1
-    print(frequency)
-    frequency
+    return sorted(frequency, key=frequency.get, reverse=True)
 
 
 def decrypt(content, freqency):
-    freq_index = ["e","t","a","o","i","h","n","s","r","d","l","u","m","w","c","y","f","g","p","b","v","k","x","j","q","z"] 
+    freq_index = ["e","t","a","o","i","h","n","s","r","d","l","u","m","w","c","y","f","g","p","b","v","k","x","j","q","z"]
+    l = {a: b for a, b in zip(freqency, freq_index)}
     simbols = {" ": " ", ".": ".", ",": ",", "?": "?", '“': '"', "”": '"', "—": "-", ";": ";", "é": "e"}
-    
     result = []
+
     for i in content:
         line = []
         for j in i:
             if 'a' <= j <= 'z':
-                line.append(chr( ord("a") + (ord(j) - ord("a") + key)%26 ))
+                line.append(l[j])
             elif j.isdecimal():
                 line.append(j)
             elif j in simbols:
@@ -39,6 +39,6 @@ def decrypt(content, freqency):
         
 
 f = open('decrypt.txt', 'w')
-# for i in decrypt(content, get_most_frequent_char(content)):
-#     f.write(''.join(i))
-#     f.write( '\n')
+for i in decrypt(content, analyze_chars_frequency(content)):
+   f.write(''.join(i))
+   f.write( '\n')
